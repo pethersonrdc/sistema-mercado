@@ -5,31 +5,87 @@
 
 body {
   margin: 0;
-  background: #f4f6f8;
-  color: #1f2937;
+  background: #050505;
+  color: #f7e9b0;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 24px auto;
   padding: 0 16px 32px;
 }
 
-h1 {
-  margin-bottom: 16px;
+/* ===== HEADER / BRAND ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
+.logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background: linear-gradient(145deg, #d6ab37, #f5dd84);
+  color: #151515;
+  font-size: 18px;
+}
+
+h1 {
+  margin: 0;
+  color: #f5dd84;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: #d4b35f;
+  font-size: 13px;
+}
+
+/* ===== GRID DUAS COLUNAS ===== */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Label de identificacao das colunas */
+.col-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #a97d1b;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3f3314;
+}
+
+/* ===== CARDS ===== */
 .card {
-  background: #fff;
+  background: #0f0f0f;
+  border: 1px solid #3f3314;
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
+h2 {
+  color: #f0cf72;
+  margin: 0 0 12px;
+}
+
+/* ===== FORMULARIOS ===== */
 form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 10px;
 }
 
@@ -38,20 +94,31 @@ select,
 button {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #6d5622;
+  background: #141414;
+  color: #f6e6b1;
 }
 
 button {
-  background: #0b6bcb;
-  color: #fff;
-  border: none;
+  background: linear-gradient(145deg, #a97d1b, #f0cf72);
+  color: #171717;
+  border: 1px solid #f0cf72;
+  font-weight: 700;
   cursor: pointer;
 }
 
 button:hover {
-  background: #0957a6;
+  filter: brightness(1.08);
 }
 
+small {
+  display: block;
+  margin-top: 8px;
+  color: #7a6030;
+  font-size: 11px;
+}
+
+/* ===== TABELAS ===== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -59,11 +126,29 @@ table {
 
 th,
 td {
-  border-bottom: 1px solid #e5e7eb;
-  padding: 10px;
+  border-bottom: 1px solid #3f3314;
+  padding: 10px 8px;
   text-align: left;
+  font-size: 13px;
 }
 
+th {
+  color: #f0cf72;
+}
+
+td {
+  color: #d4b89a;
+}
+
+/* ===== MENSAGEM ===== */
 #msg {
   font-weight: 700;
+  margin-top: 12px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 700px) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
 }
