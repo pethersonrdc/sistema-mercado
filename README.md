@@ -29,3 +29,8 @@ Abrir no navegador:
 
 - Usuario: `PETHERSON`
 - Senha: `274165`
+
+## PH Supermarket - Desenvovimento de Software
+
+- LINK: https://trello.com/b/eHuw0TeR/ph-supermarket-desenvolvimento-de-software
+
