@@ -27,5 +27,5 @@ Abrir no navegador:
 
 ## Login padrao
 
-- Usuario: `admin`
-- Senha: `admin123`
+- Usuario: `PETHERSON`
+- Senha: `274165`
