@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Mercado</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Sistema de Mercado</h1>
+      <section class="card">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="usuario" placeholder="Usuario" required />
+          <input type="password" id="senha" placeholder="Senha" required />
+          <button type="submit">Entrar</button>
+        </form>
+        <small>Usuario padrao: admin | Senha: admin123</small>
+      </section>
+
+      <section class="card">
+        <h2>Cadastrar Produto</h2>
+        <form id="produtoForm">
+          <input type="text" id="nome" placeholder="Nome do produto" required />
+          <input type="number" id="preco" placeholder="Preco" min="0" step="0.01" required />
+          <input type="number" id="estoque" placeholder="Estoque" min="0" required />
+          <button type="submit">Salvar Produto</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Registrar Venda</h2>
+        <form id="vendaForm">
+          <select id="produtoSelect" required></select>
+          <input type="number" id="quantidade" placeholder="Quantidade" min="1" required />
+          <button type="submit">Registrar Venda</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Produtos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Preco</th>
+              <th>Estoque</th>
+            </tr>
+          </thead>
+          <tbody id="produtosBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Vendas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Produto</th>
+              <th>Qtd</th>
+              <th>Total</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="vendasBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Relatorio de Caixa por Dia</h2>
+        <form id="relatorioForm">
+          <input type="date" id="dataRelatorio" required />
+          <button type="submit">Consultar Caixa</button>
+          <button type="button" id="exportExcel">Exportar Excel</button>
+          <button type="button" id="exportPdf">Exportar PDF</button>
+        </form>
+        <p id="caixaInfo"></p>
+      </section>
+
+      <p id="msg"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
