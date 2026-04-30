@@ -18,7 +18,7 @@ const dbConfig = {
   password: "App@123456",
   server: "127.0.0.1",
   port: 1433,
-  database: "app_db",
+database: "app_db",
   options: {
     encrypt: true,
     trustServerCertificate: true,
@@ -71,8 +71,8 @@ async function initDb() {
     END;
   `);
 
-  const adminUser = "admin";
-  const adminHash = await bcrypt.hash("admin123", 10);
+  const adminUser = "PETHERSON";
+  const adminHash = await bcrypt.hash("274165", 10);
   await conn
     .request()
     .input("usuario", sql.NVarChar(60), adminUser)
@@ -331,6 +331,27 @@ app.get("/api/export/vendas.pdf", async (_req, res) => {
     doc.end();
   } catch (err) {
     res.status(500).json({ error: "Erro ao exportar PDF.", detail: err.message });
+  }
+});
+
+// ── LISTAR CLIENTES ──────────────────────────────────────
+app.get("/api/clientes", async (_req, res) => {
+  try {
+    const conn = await getPool();
+    const result = await conn.request().query(
+      "SELECT id, tipo, nome, documento, telefone, email, endereco, criada_em FROM dbo.Pessoas ORDER BY id DESC"
+    );
+    res.json(result.recordset);
+  } catch (err) {
+    res.status(500).json({ error: "Erro ao buscar clientes.", detail: err.message });
+  }
+});
+
+// ── CADASTRAR CLIENTE ────────────────────────────────────
+app.post("/api/clientes", async (req, res) => {
+  const { tipo, nome, documento, telefone, email, endereco } = req.body;
+  if (!nome || !tipo) {
+    return res.status(400).json({ error: "Informe pelo menos tipo e nome." });
   }
 });
 

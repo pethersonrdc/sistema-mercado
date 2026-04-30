@@ -3,85 +3,309 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema de Mercado</title>
+    <title>PH Supermarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="container">
-      <h1>Sistema de Mercado</h1>
-      <section class="card">
-        <h2>Login</h2>
+
+    <!-- ══════════════════════════════════════════
+         TOAST DE NOTIFICAÇÃO
+    ══════════════════════════════════════════ -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ══════════════════════════════════════════
+         TELA DE LOGIN
+    ══════════════════════════════════════════ -->
+    <div id="telaLogin" class="tela tela-login ativa">
+      <div class="login-box">
+        <div class="login-logo">
+          <img src="logo/logoPH.png" alt="PH Supermarket" />
+        </div>
+        <h1 class="login-title">PH SUPERMARKET</h1>
+        <p class="login-sub">Sistema de Gestão</p>
         <form id="loginForm">
-          <input type="text" id="usuario" placeholder="Usuario" required />
-          <input type="password" id="senha" placeholder="Senha" required />
-          <button type="submit">Entrar</button>
+          <div class="input-group">
+            <label>Usuário</label>
+            <input type="text" id="usuario" placeholder="Digite seu usuário" required />
+          </div>
+          <div class="input-group">
+            <label>Senha</label>
+            <input type="password" id="senha" placeholder="Digite sua senha" required />
+          </div>
+          <button type="submit" class="btn-gold btn-full">ENTRAR</button>
         </form>
-        <small>Usuario padrao: admin | Senha: admin123</small>
-      </section>
+      </div>
+    </div>
 
-      <section class="card">
-        <h2>Cadastrar Produto</h2>
-        <form id="produtoForm">
-          <input type="text" id="nome" placeholder="Nome do produto" required />
-          <input type="number" id="preco" placeholder="Preco" min="0" step="0.01" required />
-          <input type="number" id="estoque" placeholder="Estoque" min="0" required />
-          <button type="submit">Salvar Produto</button>
-        </form>
-      </section>
+    <!-- ══════════════════════════════════════════
+         TELA PRINCIPAL (DASHBOARD)
+    ══════════════════════════════════════════ -->
+    <div id="telaPrincipal" class="tela oculta">
 
-      <section class="card">
-        <h2>Registrar Venda</h2>
-        <form id="vendaForm">
-          <select id="produtoSelect" required></select>
-          <input type="number" id="quantidade" placeholder="Quantidade" min="1" required />
-          <button type="submit">Registrar Venda</button>
-        </form>
-      </section>
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-monogram">
+          <span class="monogram-ph">Ph</span>
+        </div>
+        <div class="header-center">
+          <nav class="nav-tabs">
+            <button class="nav-btn ativo" data-tela="dashboard">Dashboard</button>
+            <button class="nav-btn" data-tela="produtos">Produtos</button>
+            <button class="nav-btn" data-tela="vendas">Vendas</button>
+            <button class="nav-btn" data-tela="clientes">Clientes</button>
+            <button class="nav-btn" data-tela="estoque">Estoque</button>
+          </nav>
+        </div>
+        <div class="header-brand">
+          <span class="header-nome">PH SUPERMARKET</span>
+          <span class="header-user" id="headerUser"></span>
+          <button class="btn-logout" id="btnLogout">Sair</button>
+        </div>
+      </header>
 
-      <section class="card">
-        <h2>Produtos</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Preco</th>
-              <th>Estoque</th>
-            </tr>
-          </thead>
-          <tbody id="produtosBody"></tbody>
-        </table>
-      </section>
+      <!-- ── PAINEL DASHBOARD ── -->
+      <div id="painelDashboard" class="painel ativo">
+        <div class="dash-welcome">
+          <div class="dash-logo-wrap">
+            <img src="logo/logoPH.png" alt="PH Supermarket" class="dash-logo" />
+          </div>
+          <h2 class="dash-title">Bem-vindo ao Sistema</h2>
+          <p class="dash-sub">Selecione uma seção no menu abaixo para começar.</p>
+        </div>
+        <div class="dash-cards">
+          <div class="dash-card" data-goto="produtos">
+            <div class="dash-icon">📦</div>
+            <div class="dash-card-label">Produtos</div>
+            <div class="dash-card-desc">Cadastrar e visualizar produtos</div>
+          </div>
+          <div class="dash-card" data-goto="vendas">
+            <div class="dash-icon">🛒</div>
+            <div class="dash-card-label">Vendas</div>
+            <div class="dash-card-desc">Registrar e consultar vendas</div>
+          </div>
+          <div class="dash-card" data-goto="clientes">
+            <div class="dash-icon">👥</div>
+            <div class="dash-card-label">Clientes</div>
+            <div class="dash-card-desc">Cadastro e listagem de clientes</div>
+          </div>
+          <div class="dash-card" data-goto="estoque">
+            <div class="dash-icon">📊</div>
+            <div class="dash-card-label">Estoque</div>
+            <div class="dash-card-desc">Relatórios e exportações</div>
+          </div>
+        </div>
+      </div>
 
-      <section class="card">
-        <h2>Vendas</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Produto</th>
-              <th>Qtd</th>
-              <th>Total</th>
-              <th>Data</th>
-            </tr>
-          </thead>
-          <tbody id="vendasBody"></tbody>
-        </table>
-      </section>
+      <!-- ── PAINEL PRODUTOS ── -->
+      <div id="painelProdutos" class="painel oculto">
+        <div class="painel-header">
+          <h2>Produtos</h2>
+        </div>
+        <div class="cols">
+          <!-- Cadastro -->
+          <div class="card">
+            <h3>Cadastrar Produto</h3>
+            <form id="produtoForm" class="form-stack">
+              <div class="input-group">
+                <label>Nome do Produto</label>
+                <input type="text" id="nome" placeholder="Ex: Arroz 5kg" required />
+              </div>
+              <div class="input-group">
+                <label>Preço (R$)</label>
+                <input type="number" id="preco" placeholder="0,00" min="0" step="0.01" required />
+              </div>
+              <div class="input-group">
+                <label>Estoque Inicial</label>
+                <input type="number" id="estoque" placeholder="Qtd" min="0" required />
+              </div>
+              <button type="submit" class="btn-gold">Salvar Produto</button>
+            </form>
+          </div>
 
-      <section class="card">
-        <h2>Relatorio de Caixa por Dia</h2>
-        <form id="relatorioForm">
-          <input type="date" id="dataRelatorio" required />
-          <button type="submit">Consultar Caixa</button>
-          <button type="button" id="exportExcel">Exportar Excel</button>
-          <button type="button" id="exportPdf">Exportar PDF</button>
-        </form>
-        <p id="caixaInfo"></p>
-      </section>
+          <!-- Tabela -->
+          <div class="card card-wide">
+            <h3>Lista de Produtos</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th><th>Nome</th><th>Preço</th><th>Estoque</th>
+                  </tr>
+                </thead>
+                <tbody id="produtosBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <p id="msg"></p>
-    </main>
+      <!-- ── PAINEL VENDAS ── -->
+      <div id="painelVendas" class="painel oculto">
+        <div class="painel-header">
+          <h2>Vendas</h2>
+        </div>
+        <div class="cols">
+          <!-- Registrar Venda -->
+          <div class="card">
+            <h3>Registrar Venda</h3>
+            <form id="vendaForm" class="form-stack">
+              <div class="input-group">
+                <label>Produto</label>
+                <select id="produtoSelect" required>
+                  <option value="">Selecione o produto</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Quantidade</label>
+                <input type="number" id="quantidade" placeholder="Qtd" min="1" required />
+              </div>
+              <button type="submit" class="btn-gold">Registrar Venda</button>
+            </form>
+          </div>
+
+          <!-- Tabela Vendas -->
+          <div class="card card-wide">
+            <h3>Histórico de Vendas</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th><th>Produto</th><th>Qtd</th><th>Total</th><th>Data</th>
+                  </tr>
+                </thead>
+                <tbody id="vendasBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAINEL CLIENTES ── -->
+      <div id="painelClientes" class="painel oculto">
+        <div class="painel-header">
+          <h2>Clientes</h2>
+        </div>
+        <div class="cols">
+          <!-- Cadastro de Cliente -->
+          <div class="card">
+            <h3>Cadastrar Cliente</h3>
+            <form id="clienteForm" class="form-stack">
+              <div class="input-group">
+                <label>Tipo</label>
+                <select id="clienteTipo" required>
+                  <option value="">Selecione</option>
+                  <option value="PF">Pessoa Física</option>
+                  <option value="PJ">Pessoa Jurídica</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" id="clienteNome" placeholder="Nome do cliente" required />
+              </div>
+              <div class="input-group">
+                <label>CPF / CNPJ</label>
+                <input type="text" id="clienteDocumento" placeholder="000.000.000-00" required />
+              </div>
+              <div class="input-group">
+                <label>Telefone</label>
+                <input type="text" id="clienteTelefone" placeholder="(00) 00000-0000" />
+              </div>
+              <div class="input-group">
+                <label>E-mail</label>
+                <input type="email" id="clienteEmail" placeholder="email@exemplo.com" />
+              </div>
+              <div class="input-group">
+                <label>Endereço</label>
+                <input type="text" id="clienteEndereco" placeholder="Rua, número, cidade" />
+              </div>
+              <button type="submit" class="btn-gold">Salvar Cliente</button>
+            </form>
+          </div>
+
+          <!-- Listagem de Clientes -->
+          <div class="card card-wide">
+            <h3>Clientes Cadastrados</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th><th>Tipo</th><th>Nome</th><th>Documento</th><th>Telefone</th><th>E-mail</th>
+                  </tr>
+                </thead>
+                <tbody id="clientesBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PAINEL ESTOQUE / RELATÓRIOS ── -->
+      <div id="painelEstoque" class="painel oculto">
+        <div class="painel-header">
+          <h2>Estoque &amp; Relatórios</h2>
+        </div>
+
+        <div class="cols">
+          <!-- Relatório de Caixa -->
+          <div class="card">
+            <h3>Relatório de Caixa por Dia</h3>
+            <form id="relatorioForm" class="form-stack">
+              <div class="input-group">
+                <label>Data</label>
+                <input type="date" id="dataRelatorio" required />
+              </div>
+              <button type="submit" class="btn-gold">Consultar Caixa</button>
+            </form>
+            <div id="caixaInfo" class="caixa-resultado"></div>
+          </div>
+
+          <!-- Exportações -->
+          <div class="card">
+            <h3>Exportar Dados</h3>
+            <div class="export-btns">
+              <button id="exportExcel" class="btn-export">
+                <span class="export-icon">📊</span>
+                <span>Exportar Excel</span>
+              </button>
+              <button id="exportPdf" class="btn-export">
+                <span class="export-icon">📄</span>
+                <span>Exportar PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Resumo de Estoque -->
+          <div class="card card-wide">
+            <h3>Visão Geral do Estoque</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th><th>Produto</th><th>Preço</th><th>Estoque</th><th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="estoqueBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- FIM TELA PRINCIPAL -->
+
+    <!-- ══════════════════════════════════════════
+         OVERLAY DE ANIMAÇÃO DE SUCESSO
+    ══════════════════════════════════════════ -->
+    <div id="successOverlay" class="success-overlay oculto">
+      <div class="success-box">
+        <div class="success-icon">✓</div>
+        <div id="successMsg" class="success-msg"></div>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>
