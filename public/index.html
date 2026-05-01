@@ -11,14 +11,10 @@
   </head>
   <body>
 
-    <!-- ══════════════════════════════════════════
-         TOAST DE NOTIFICAÇÃO
-    ══════════════════════════════════════════ -->
+
     <div id="toast" class="toast"></div>
 
-    <!-- ══════════════════════════════════════════
-         TELA DE LOGIN
-    ══════════════════════════════════════════ -->
+
     <div id="telaLogin" class="tela tela-login ativa">
       <div class="login-box">
         <div class="login-logo">
@@ -40,9 +36,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         TELA PRINCIPAL (DASHBOARD)
-    ══════════════════════════════════════════ -->
+
     <div id="telaPrincipal" class="tela oculta">
 
       <!-- HEADER -->
@@ -70,7 +64,7 @@
       <div id="painelDashboard" class="painel ativo">
         <div class="dash-welcome">
           <div class="dash-logo-wrap">
-            <img src="logo/logoPH.png" alt="PH Supermarket" class="dash-logo" />
+            <img src="logo/logoPH.png" alt="PH Supermarket" />
           </div>
           <h2 class="dash-title">Bem-vindo ao Sistema</h2>
           <p class="dash-sub">Selecione uma seção no menu abaixo para começar.</p>
@@ -248,7 +242,8 @@
           <h2>Estoque &amp; Relatórios</h2>
         </div>
 
-        <div class="cols">
+        <!-- Linha 1: Relatório + Exportações lado a lado -->
+        <div class="cols" style="margin-bottom: 20px;">
           <!-- Relatório de Caixa -->
           <div class="card">
             <h3>Relatório de Caixa por Dia</h3>
@@ -276,30 +271,28 @@
               </button>
             </div>
           </div>
+        </div>
 
-          <!-- Resumo de Estoque -->
-          <div class="card card-wide">
-            <h3>Visão Geral do Estoque</h3>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th><th>Produto</th><th>Preço</th><th>Estoque</th><th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="estoqueBody"></tbody>
-              </table>
-            </div>
+        <!-- Linha 2: Visão Geral do Estoque — largura total -->
+        <div class="card">
+          <h3>Visão Geral do Estoque</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th><th>Produto</th><th>Preço</th><th>Estoque</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="estoqueBody"></tbody>
+            </table>
           </div>
         </div>
+
       </div>
 
     </div>
     <!-- FIM TELA PRINCIPAL -->
 
-    <!-- ══════════════════════════════════════════
-         OVERLAY DE ANIMAÇÃO DE SUCESSO
-    ══════════════════════════════════════════ -->
     <div id="successOverlay" class="success-overlay oculto">
       <div class="success-box">
         <div class="success-icon">✓</div>
